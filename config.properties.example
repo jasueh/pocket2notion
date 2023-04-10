@@ -6,3 +6,4 @@ url = https://api.notion.com/v1
 [pocket]
 consumer_key = <<consumer key from pocket autorized app>>
 access_token = <<access token from pocket oauth endpoint>>
+tag = <<tag from pocket that will be syncronized>> 

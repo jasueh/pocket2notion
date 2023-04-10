@@ -11,7 +11,7 @@ config.read('config.properties')
 
 consumer_key = config['pocket']['consumer_key'] # your Pocket API consumer key in the config.properties file
 access_token = config['pocket']['access_token'] # your Pocket API access token in the config.properties file
-
+tag = config['pocket']['tag']   # Tag in Pocket that you want to use to sincronize with Notion
 # define the interval between script runs (in seconds)
 interval = 20
 
@@ -38,7 +38,7 @@ params = {
     'detailType': 'complete', # include full details, including tags
     'sort': 'newest', # sort bookmarks by newest first
     'since': int(last_timestamp), # get bookmarks added or updated since last execution
-    'tag': 'ideas'
+    'tag': tag
 }
 
 while True:
