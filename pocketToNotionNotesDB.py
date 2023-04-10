@@ -32,19 +32,19 @@ else:
 
 # define the endpoint and parameters for the Pocket API
 endpoint = 'https://getpocket.com/v3/get'
-params = {
-    'consumer_key': consumer_key,
-    'access_token': access_token,
-    'detailType': 'complete', # include full details, including tags
-    'sort': 'newest', # sort bookmarks by newest first
-    'since': int(last_timestamp), # get bookmarks added or updated since last execution
-    'tag': tag
-}
+
 
 while True:
     # send a POST request to the Pocket API and handle errors
     print('Starting new Cycle')
-
+    params = {
+        'consumer_key': consumer_key,
+        'access_token': access_token,
+        'detailType': 'complete', # include full details, including tags
+        'sort': 'newest', # sort bookmarks by newest first
+        'since': int(last_timestamp), # get bookmarks added or updated since last execution
+        'tag': tag
+    }
     try:
         response = requests.post(endpoint, json=params)
         response.raise_for_status()
