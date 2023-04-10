@@ -61,14 +61,14 @@ while True:
         continue
 
     # print the title and tags for each new bookmark
-    print('Checking if there are bookmarks')
-    print('bookmarks...', bookmarks)
+    print('Checking if there are bookmarks...')
+    #print('bookmarks...', bookmarks)
     if bookmarks:   
         for bookmark in bookmarks.values():
-            print ("Bookamark: ", bookmark)
+            print ("Bookmark Details: ", bookmark)
             #if bookmark['status'] == '0':
             if 'time_added' in bookmark: 
-                print('time added-', bookmark['time_added'])
+                print('Bookmark Time: ', bookmark['time_added'])
                 if float(bookmark['time_added'])> float(last_timestamp):
                     print(bookmark['resolved_title'], ':', bookmark['resolved_url'])
                     tags = bookmark.get('tags', {}).values()
@@ -80,13 +80,15 @@ while True:
                     #add item to notion DB 
                     create_database_item(bookmark['resolved_title'], bookmark['resolved_url'])
                     # update the last timestamp to the latest added or updated bookmark
-                    last_timestamp = bookmark['time_added']
+                    # last_timestamp = bookmark['time_added']
+                    last_timestamp = int(max(float(last_timestamp), float(bookmark['time_added'])))
 
     
         
         # save the last timestamp to a file
         with open(timestamp_file, 'w') as f:
             f.write(str(last_timestamp))
+        print('Last Timestamp Saved: ', last_timestamp)
         bookmarks=''    
 
 
