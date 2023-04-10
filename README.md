@@ -5,7 +5,7 @@ Simple integration to send saved bookmarks from pocket to notion using both APIs
 ## Introduction
 
 This integration takes information from Pocket API using the retrieve option: <https://getpocket.com/developer/docs/v3/retrieve>
-Then uses the Notion API to insert the
+Then uses the Notion API to insert the bookmark into Notion DB using Notion API: <https://developers.notion.com/docs/working-with-databases>
 
 ## Pre-requisites
 
