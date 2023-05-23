@@ -22,12 +22,14 @@ timestamp_file = 'last_timestamp.txt'
 if os.path.exists(timestamp_file):
     with open(timestamp_file, 'r') as f:
         last_timestamp = int(f.read().strip())
+        last_timestamp_temp = last_timestamp
 else:
     human_timestamp = '2023-04-09 10:30:00'
     # convert the human-readable timestamp to a datetime object
     dt = datetime.datetime.strptime(human_timestamp, '%Y-%m-%d %H:%M:%S')
     # convert the datetime object to a Unix timestamp
     last_timestamp = dt.timestamp()
+    last_timestamp_temp = dt.timestamp()
 
 
 # define the endpoint and parameters for the Pocket API
@@ -62,7 +64,7 @@ while True:
 
     # print the title and tags for each new bookmark
     print('Checking if there are bookmarks...')
-    #print('bookmarks...', bookmarks)
+    print('bookmarks...', bookmarks)
     if bookmarks:   
         for bookmark in bookmarks.values():
             print ("Bookmark Details: ", bookmark)
@@ -81,13 +83,14 @@ while True:
                     create_database_item(bookmark['resolved_title'], bookmark['resolved_url'])
                     # update the last timestamp to the latest added or updated bookmark
                     # last_timestamp = bookmark['time_added']
-                    last_timestamp = int(max(float(last_timestamp), float(bookmark['time_added'])))
+                    last_timestamp_temp = int(max(float(last_timestamp_temp), float(bookmark['time_added'])))
 
     
         
         # save the last timestamp to a file
         with open(timestamp_file, 'w') as f:
-            f.write(str(last_timestamp))
+            f.write(str(last_timestamp_temp))
+        last_timestamp = last_timestamp_temp
         print('Last Timestamp Saved: ', last_timestamp)
         bookmarks=''    
 
