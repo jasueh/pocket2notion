@@ -69,7 +69,7 @@ while True:
             if 'time_added' in bookmark: 
                 print('time added-', bookmark['time_added'])
                 if float(bookmark['time_added'])> float(last_timestamp):
-                    print(bookmark['resolved_title'], ':', bookmark['resolved_url'])
+                    print(bookmark['given_title'], ':', bookmark['given_url'])
                     tags = bookmark.get('tags', {}).values()
                     if tags:
                         print('Tags:', ', '.join(tag['tag'] for tag in tags))

@@ -72,7 +72,7 @@ while True:
             if 'time_added' in bookmark: 
                 print('Bookmark Time: ', bookmark['time_added'])
                 if float(bookmark['time_added'])> float(last_timestamp):
-                    print(bookmark['resolved_title'], ':', bookmark['resolved_url'])
+                    print(bookmark['given_title'], ':', bookmark['given_url'])
                     tags = bookmark.get('tags', {}).values()
                     if tags:
                         print('Tags:', ', '.join(tag['tag'] for tag in tags))
@@ -80,7 +80,7 @@ while True:
                         print('No tags')
                         
                     #add item to notion DB 
-                    create_database_item(bookmark['resolved_title'], bookmark['resolved_url'])
+                    create_database_item(bookmark['given_title'], bookmark['given_url'])
                     # update the last timestamp to the latest added or updated bookmark
                     # last_timestamp = bookmark['time_added']
                     last_timestamp_temp = int(max(float(last_timestamp_temp), float(bookmark['time_added'])))
