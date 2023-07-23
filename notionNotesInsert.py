@@ -25,7 +25,9 @@ def create_database_item(title, description):
         "parent": {"database_id": NOTION_DATABASE_ID},
         "properties": {
             "Name": {"title": [{"text": {"content": title}}]},
-            "Link / URL": {"url": description}
+            "Link / URL": {"url": description},
+            "Status":{'id': '%25%255A', 'select': {'color': 'pink', 'id': '4283667e-080f-48d7-8e97-16220f30c2d5','name': '1: New'}, 'type': 'select'},
+            "Type": {'id': 'HrX%40', 'select': {'color': 'orange', 'id': 'l`<Y', 'name': 'WebClip'},  'type': 'select'}
         }
     }
 
